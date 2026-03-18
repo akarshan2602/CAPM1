@@ -21,6 +21,9 @@ entity OpeningHours : cuid  {
   openingTime: Time;
   closingTime: Time;
   store: Association to Store;
+  // Colored notations for Closed/Open
+  virtual statusText: String;
+  virtual statusCriticality: Integer;
 }
 
 @assert.unique: { productsID: [productsID] }
@@ -31,13 +34,14 @@ entity Products : cuid  {
   availableQty: Integer;
   store: Association to Store;
   priceDetails: Composition of many PriceDetails on priceDetails.product = $self;
+  virtual stockLevel: Integer
 }
 
 entity PriceDetails : cuid  {
   validFrom: Date;
   validTo: Date;
   price: Decimal(10,2);
-  Currency: Currency;
+  currency: Currency;
   quantity: Integer;
   UOM: String(10);
   product: Association to Products;

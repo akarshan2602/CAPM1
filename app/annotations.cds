@@ -420,7 +420,13 @@ annotate cAPM1Srv.OpeningHours with @(
     {Value: day, Label: 'Day'},
     {Value: openingTime, Label: 'Opening Time'},
     {Value: closingTime, Label: 'Closing Time'},
-    {Value: isClosed, Label: 'Status'}
+    {Value: isClosed, Label: 'Shop Closed', Criticality: statusCriticality}
+    // {
+    //   // $Type: 'UI.DataField',
+    //   Value: statusText,
+    //   Criticality: statusCriticality,
+    //   Label: 'Status'
+    // }
   ]
 );
 
@@ -429,7 +435,7 @@ annotate cAPM1Srv.OpeningHours with @(
 
 annotate cAPM1Srv.Products with @(
   UI.LineItem : [
-    {Value: productsID}, {Value: name}, {Value:UOM}, {Value:availableQty}
+    {Value: productsID}, {Value: name}, {Value:UOM}, {Value:availableQty, Criticality: stockLevel}
   ],
   UI.HeaderInfo: {
     TypeName: 'Product', TypeNamePlural: 'Products', Title: {Value:productsID}
@@ -442,6 +448,9 @@ annotate cAPM1Srv.Products with @(
     Data: [{Value : productsID}, {Value: city}, {Value: UOM}, {Value: availableQty}]
   }
 );
+
+
+// ----current UI------
 
 // ---PRICING DETAILS UI-----------
 

@@ -1,0 +1,7 @@
+ID,productsID,name,UOM,availableQty,store_ID
+fff65027-189b-4366-ba8a-969d444706ed,P001,Laptop,pcs,10,fff65027-189b-4366-ba8a-969d444706ed
+dc4f5c90-8ffe-4da0-8a8b-97524cff9a0a,P002,Smartphone,pcs,25,fff65027-189b-4366-ba8a-969d444706ed
+c74f2bbd-add6-4514-8f5e-1275a085dded,P003,Wireless Headphones,pcs,15,fff65027-189b-4366-ba8a-969d444706ed
+82ab4b1f-c9b8-4771-8b5b-1ba714ce6578,P004,Tablet,pcs,20,dc4f5c90-8ffe-4da0-8a8b-97524cff9a0a
+e26d088f-fc2b-4b19-a55d-728328f34ff3,P005,Smartwatch,pcs,30,dc4f5c90-8ffe-4da0-8a8b-97524cff9a0a
+03ffe6e6-5918-4435-ac52-fa4531295e03,P006,Bluetooth Speaker,pcs,18,dc4f5c90-8ffe-4da0-8a8b-97524cff9a0a

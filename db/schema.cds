@@ -1,0 +1,45 @@
+namespace CAPM1;
+using { cuid , Currency } from '@sap/cds/common';
+
+@assert.unique: { name: [name] }
+entity Store : cuid  {
+  name: String(100) @mandatory;
+  city: String(50);
+  state: String(50);
+  country: String(50);
+  phone: String(15);
+  emailId: String(100);
+  openingDate: Date;
+  closingDate: Date;
+  openingHours: Composition of many OpeningHours on openingHours.store = $self;
+  products: Composition of many Products on products.store = $self;
+}
+
+entity OpeningHours : cuid  {
+  day: String(10) @mandatory;
+  isClosed: Boolean;
+  openingTime: Time;
+  closingTime: Time;
+  store: Association to Store;
+}
+
+@assert.unique: { productsID: [productsID] }
+entity Products : cuid  {
+  productsID: String(50) @mandatory;
+  name: String(100);
+  UOM: String(10);
+  availableQty: Integer;
+  store: Association to Store;
+  priceDetails: Composition of many PriceDetails on priceDetails.product = $self;
+}
+
+entity PriceDetails : cuid  {
+  validFrom: Date;
+  validTo: Date;
+  price: Decimal(10,2);
+  Currency: Currency;
+  quantity: Integer;
+  UOM: String(10);
+  product: Association to Products;
+}
+

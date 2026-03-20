@@ -1,5 +1,5 @@
 namespace CAPM1;
-using { cuid , Currency } from '@sap/cds/common';
+using {  cuid , Currency } from '@sap/cds/common';
 
 @assert.unique: { name: [name] }
 entity Store : cuid  {
@@ -24,6 +24,16 @@ entity OpeningHours : cuid  {
   // Colored notations for Closed/Open
   virtual statusText: String;
   virtual statusCriticality: Integer;
+}
+
+entity Festivals: cuid { 
+  keyID : UUID;
+  name: String;
+  date: Date;
+  isClosed: Boolean;
+  openingTime: Time;
+  closingTime: Time;
+  store: Association to Store;
 }
 
 @assert.unique: { productsID: [productsID] }

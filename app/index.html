@@ -27,7 +27,7 @@
                     return Controller.extend("PreviewController", {
                         onInit: function () {
 
-                            const data = {"Services":[{"ServiceName":"cAPM1Srv","DetailsURL":"./service/cAPM1/","Metadata":"./service/cAPM1/$metadata","Entities":[{"Name":"Store","URL":"./service/cAPM1/Store","FioriURL":"$fiori-preview/cAPM1Srv/Store#preview-app"},{"Name":"OpeningHours","URL":"./service/cAPM1/OpeningHours","FioriURL":"$fiori-preview/cAPM1Srv/OpeningHours#preview-app"},{"Name":"Products","URL":"./service/cAPM1/Products","FioriURL":"$fiori-preview/cAPM1Srv/Products#preview-app"},{"Name":"PriceDetails","URL":"./service/cAPM1/PriceDetails","FioriURL":"$fiori-preview/cAPM1Srv/PriceDetails#preview-app"}],"EntitiesCount":4}]}
+                            const data = {"Services":[]}
                             this.getView().setModel(new JSONModel(data));
                         }
                     });

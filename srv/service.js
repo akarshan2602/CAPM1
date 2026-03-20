@@ -39,3 +39,6 @@ function getNextDayOfWeek(date, dayName) {
     resultDate.setDate(date.getDate() + (days.indexOf(dayName) - date.getDay() + 7) % 7);
     return resultDate;
 }
+
+
+//pushed to github

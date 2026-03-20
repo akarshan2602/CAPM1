@@ -1,0 +1,182 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "capm1.storemanagement",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "Store Management",
+    "description": "Store Management using CAPM",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.21.0",
+      "toolsId": "d46e7d2f-1b78-4943-8cb8-0dd812f821a5"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/service/cAPM1/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "capm1storemanagement-display": {
+          "semanticObject": "capm1storemanagement",
+          "action": "display",
+          "title": "{{capm1storemanagement-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.13",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "capm1.storemanagement.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "StoreList",
+          "target": "StoreList"
+        },
+        {
+          "pattern": "Store({key}):?query:",
+          "name": "StoreObjectPage",
+          "target": "StoreObjectPage"
+        },
+        {
+          "name": "Store_productsObjectPage",
+          "pattern": "Store({key})/products({productsKey}):?query:",
+          "target": "Store_productsObjectPage"
+        }
+      ],
+      "targets": {
+        "StoreList": {
+          "type": "Component",
+          "id": "StoreList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Store",
+              "variantManagement": "Page",
+              "navigation": {
+                "Store": {
+                  "detail": {
+                    "route": "StoreObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "StoreObjectPage": {
+          "type": "Component",
+          "id": "StoreObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Store",
+              "navigation": {
+                "products": {
+                  "detail": {
+                    "route": "Store_productsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Store_productsObjectPage": {
+          "type": "Component",
+          "id": "Store_productsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/Store/products"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}

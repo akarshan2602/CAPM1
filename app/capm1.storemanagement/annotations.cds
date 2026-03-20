@@ -1,0 +1,1 @@
+using cAPM1Srv as service from '../../srv/service';

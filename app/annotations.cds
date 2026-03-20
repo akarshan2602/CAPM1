@@ -433,16 +433,39 @@ annotate cAPM1Srv.OpeningHours with @(
 
 // Product UI
 
+// annotate cAPM1Srv.Products with @(
+//   UI.LineItem : [
+//     {Value: productsID}, {Value: name}, {Value:UOM}, {Value:availableQty, Criticality: stockLevel}
+//   ],
+//   UI.HeaderInfo: {
+//     TypeName: 'Product', TypeNamePlural: 'Products', Title: {Value:productsID}
+//   },
+//   UI.Facets: [
+//     {  $Type: 'UI.ReferenceFacet', Label: 'Genera Info', Target: '@UI.FieldGroup#Main'},
+//     { $Type: 'UI.ReferenceFacet', Label: 'Pricing History', Target: 'priceDetails/@UI.LineItem'}
+//   ],
+//    UI.FieldGroup #Main:{
+//     Data: [{Value : productsID}, {Value: city}, {Value: UOM}, {Value: availableQty}]
+//   }
+// );
+
 annotate cAPM1Srv.Products with @(
-  UI.LineItem : [
-    {Value: productsID}, {Value: name}, {Value:UOM}, {Value:availableQty, Criticality: stockLevel}
+  UI.LineItem:[
+    {Value: productsID},
+    {
+      $Type: 'UI.DataFieldWithNavigationPath',
+      Value: name,
+      Target: 'priceDetails',
+    },
+    {Value: UOM},
+    {Value: availableQty, Criticality: stockLevel}
   ],
-  UI.HeaderInfo: {
+   UI.HeaderInfo: {
     TypeName: 'Product', TypeNamePlural: 'Products', Title: {Value:productsID}
   },
   UI.Facets: [
     {  $Type: 'UI.ReferenceFacet', Label: 'Genera Info', Target: '@UI.FieldGroup#Main'},
-    { $Type: 'UI.ReferenceFacet', Label: 'Pricing History', Target: 'priceDetails/@UI.LineItem'}
+    { $Type: 'UI.ReferenceFacet', Label: 'Price Details', Target: 'priceDetails/@UI.LineItem'}
   ],
    UI.FieldGroup #Main:{
     Data: [{Value : productsID}, {Value: city}, {Value: UOM}, {Value: availableQty}]

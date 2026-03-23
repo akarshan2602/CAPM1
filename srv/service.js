@@ -1,4 +1,5 @@
-const cds = require('@sap/cds')
+const cds = require('@sap/cds');
+const { SELECT } = require('@sap/cds/lib/ql/cds-ql');
 
 
 
@@ -14,24 +15,45 @@ module.exports = (srv) => {
             each.stockLevel =3; //3= Green(positive)
         }
     });
-    srv.after('READ', 'OpeningHours', (data) =>{
-    const entries = Array.isArray(data)? data: [data];
+    // srv.after('READ', 'OpeningHours', (data) =>{
+    // const entries = Array.isArray(data)? data: [data];
+    // const today= new Date();
+    // entries.forEach(each => {
+    //     const nextDate =  getNextDayOfWeek(today, each.day);
+    //     each.calendarDate= nextDate.toISOString().split('T')[0];
+    //     if(each.isClosed){
+    //     each.statusText= 'CLOSED';
+    //     each.statusCriticality=1; //RED
+    // }
+    // else{
+    //     each.statusText= 'OPEN';
+    //     each.statusCriticality=3 //GREEN
+    // }
+    // data.sort((a,b) => new Date(a.calendarDate) - new Date(b.calendarDate)); //sorting week with respect to the current dates
+    //     })}
+    // );
+    srv.after('READ', 'OpeningHours', async (data) =>{
+        const {Festivals} = srv.entities;
+        const entries = Array.isArray(data)? data: [data];
     const today= new Date();
-
+    const allFestivals = await SELECT.from(Festivals);
     entries.forEach(each => {
         const nextDate =  getNextDayOfWeek(today, each.day);
         each.calendarDate= nextDate.toISOString().split('T')[0];
-        if(each.isClosed){
-        each.statusText= 'CLOSED';
-        each.statusCriticality=1; //RED
-    }
-    else{
-        each.statusText= 'OPEN';
-        each.statusCriticality=3 //GREEN
-    }
-    data.sort((a,b) => new Date(a.calendarDate) - new Date(b.calendarDate)); //sorting week with respect to the current dates
-})
-});
+        const festival = allFestivals.find( f => f.date === date.String && f.store_ID === each.store_ID);
+        if (festival){
+            each.openingTime= festival.openingTime;
+            each.closingTime= festival.closingTime;
+            each.isClosed = festival.isClosed;
+            each.statusText = festival.isClosed ? 'CLOSED (${festival.name})' : 'OPEN($festival.name})';
+            each.statusCriticality = 2; //for special timing use orange
+        }
+        else{
+            each.statusText = each.isClosed ? 'CLOSED': 'OPEN';
+            each.statusCriticality= each.isClosed? 1:3;
+        }
+    });
+    });
 };
 function getNextDayOfWeek(date, dayName) {
     const days= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

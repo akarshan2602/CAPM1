@@ -44,6 +44,7 @@ entity Products : cuid  {
   availableQty: Integer;
   store: Association to Store;
   priceDetails: Composition of many PriceDetails on priceDetails.product = $self;
+  price: Association to PriceDetails;
   virtual stockLevel: Integer
 }
 

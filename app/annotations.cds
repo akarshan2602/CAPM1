@@ -32,18 +32,6 @@ annotate cAPM1Srv.OpeningHours with @(
     {Value: closingTime, Label: 'Closing Time'},
     {Value: isClosed, Label: 'Shop Closed', Criticality: statusCriticality}
   ],
-
-  /*-------------------AI Generated code for sorting the date(hardcoded directly into service.js---------*/ 
-  // UI.PresentationVariant: {
-  //   SortOrder :[
-  //     {
-  //       $Type: 'Commomn.SortOrderType',
-  //       Property: calendarDate,
-  //       Descending: false,
-  //     }
-  //   ],
-  //     Visualizations: ['@UI.LineItem']
-  // }
 );
 
 annotate cAPM1Srv.Products with @(
@@ -69,6 +57,18 @@ annotate cAPM1Srv.Products with @(
   }
 );
 
+annotate cAPM1Srv.ProductCatalog with @(
+  UI.SelectionFields :[
+    productName,
+    storeName
+  ],
+  UI.LineItem: [
+    {Value: productName, Label: 'Product Name'},
+    {Value: storeName, Label: 'Store'},
+    {Value: initialPrice, Label: 'Base Price'},
+    {Value: currency, Label: 'Currency'}
+  ]
+);
 
 // ----current UI------
 

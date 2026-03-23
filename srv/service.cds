@@ -5,13 +5,24 @@ using { CAPM1 as my } from '../db/schema.cds';
 service cAPM1Srv {
   @odata.draft.enabled
   entity Store as projection on my.Store;
+  // Requirement Main Entity to Procus with Store name and price
+  @readonly
+  entity ProductCatalog as select from my.Products{
+    key ID,
+    productsID,
+    name as productName,
+    UOM,
+    store.name as storeName,
+    price.price as initialPrice,
+    // price.currency as currency
+  };
   entity OpeningHours as projection on my.OpeningHours{
     *,
     virtual null as calendarDate: Date,
     virtual null as statusText: String,
     virtual null as criticality: Integer
   };
-  entity Products as projection on my.Products;
+  @cds.redirection.target entity Products as projection on my.Products;
   entity PriceDetails as projection on my.PriceDetails;
   entity Festivals as projection on my.Festivals;
 }

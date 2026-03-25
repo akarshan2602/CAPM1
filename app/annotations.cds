@@ -30,7 +30,7 @@ annotate cAPM1Srv.OpeningHours with @(
     {Value: day, Label: 'Day'},
     {Value: openingTime, Label: 'Opening Time'},
     {Value: closingTime, Label: 'Closing Time'},
-    {Value: isClosed, Label: 'Shop Closed', Criticality: statusCriticality}
+    {Value: statusText, Label: 'Shop Status', Criticality: statusCriticality}
   ],
 );
 
@@ -70,6 +70,16 @@ annotate cAPM1Srv.ProductCatalog with @(
   ]
 );
 
+//---------------FESTIVALS UI----------------
+annotate cAPM1Srv.Festivals with @(
+  UI.LineItem: [
+    { Value: name },
+    { Value: date },
+    { Value: isClosed },
+    { Value: openingTime },
+    { Value: closingTime }
+  ]
+);
 // ----current UI------
 
 // ---PRICING DETAILS UI-----------

@@ -32,26 +32,43 @@ module.exports = (srv) => {
     // data.sort((a,b) => new Date(a.calendarDate) - new Date(b.calendarDate)); //sorting week with respect to the current dates
     //     })}
     // );
-    srv.after('READ', 'OpeningHours', async (data) =>{
+    srv.after('READ', 'OpeningHours', async (data, req) =>{
         const {Festivals} = srv.entities;
         const entries = Array.isArray(data)? data: [data];
     const today= new Date();
     const allFestivals = await SELECT.from(Festivals);
     entries.forEach(each => {
         const nextDate =  getNextDayOfWeek(today, each.day);
-        each.calendarDate= nextDate.toISOString().split('T')[0];
-        const festival = allFestivals.find( f => f.date === date.String && f.store_ID === each.store_ID);
+        const isoDate= nextDate.toISOString().split('T')[0];
+        each.calendarDate= isoDate;
+        const urlStoreID= (req.params[0]?.ID || req.data?.store_ID || "").toString();
+        console.log(`Checking match for : ${isoDate} against store ${urlStoreID}`);
+        const festival = allFestivals.find( f => {
+            if (!f.date || !f.store_ID) return false;
+
+            return f.date.toString() === isoDate && f.store_ID.toString() === urlStoreID;
+        });
         if (festival){
+            // console.log(each.isClosed);
+            each.isClosed = festival.isClosed;
+            // console.log(each.isClosed);
             each.openingTime= festival.openingTime;
             each.closingTime= festival.closingTime;
-            each.isClosed = festival.isClosed;
-            each.statusText = festival.isClosed ? 'CLOSED (${festival.name})' : 'OPEN($festival.name})';
+            each.statusText = festival.isClosed? `CLOSED(${festival.name})`: `OPEN(${festival.name})`;
             each.statusCriticality = 2; //for special timing use orange
         }
         else{
-            each.statusText = each.isClosed ? 'CLOSED': 'OPEN';
-            each.statusCriticality= each.isClosed? 1:3;
+            if(each.day === 'Sunday'){
+                each.isClosed= true;
+                each.statusText= 'CLOSED';
+                each.statusCriticality=1;
+            }
+            else{
+                each.statusText = each.isClosed ? 'CLOSED': 'OPEN';
+                each.statusCriticality= each.isClosed? 1:3;
+            }
         }
+        data.sort((a,b) => new Date(a.calendarDate) - new Date(b.calendarDate)); 
     });
     });
 };

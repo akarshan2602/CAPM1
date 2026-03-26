@@ -1,6 +1,5 @@
 namespace CAPM1;
 using {  cuid , Currency } from '@sap/cds/common';
-
 @assert.unique: { name: [name] }
 entity Store : cuid  {
   name: String(100) @mandatory;
@@ -57,4 +56,10 @@ entity PriceDetails : cuid  {
   UOM: String(10);
   product: Association to Products;
 }
-
+@cds.redirection.target entity ProductCatalog as select from Products{
+    key ID,
+  name as productName,
+  UOM,
+  price.price as price,
+  store.name as storeName
+}

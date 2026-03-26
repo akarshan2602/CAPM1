@@ -58,16 +58,22 @@ annotate cAPM1Srv.Products with @(
 );
 
 annotate cAPM1Srv.ProductCatalog with @(
+    UI.LineItem: [
+    {Value: productName, Label: 'Product Name'},
+    {Value: storeName, Label: 'Store'},
+    {Value: initialPrice, Label: 'Price'},
+    {Value: UOM, Label: 'Unit of Measure'}
+  ],
   UI.SelectionFields :[
     productName,
     storeName
   ],
-  UI.LineItem: [
-    {Value: productName, Label: 'Product Name'},
-    {Value: storeName, Label: 'Store'},
-    {Value: initialPrice, Label: 'Base Price'},
-    {Value: currency, Label: 'Currency'}
-  ]
+  UI.HeaderInfo:{
+    TypeName: 'Product',
+    TypeNamePlural: 'Global Product Catalog',
+    Title: {Value: productName}
+  }
+
 );
 
 //---------------FESTIVALS UI----------------

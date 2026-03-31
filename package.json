@@ -16,14 +16,17 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
-    "@sap/dev-cap-tools": "^1.31.0"
+    "@sap/dev-cap-tools": "^1.31.0",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
     "start": "cds-serve",
     "start-local": "npm run generate-entry-point && npm run cds-watch",
     "generate-entry-point": "dev-cap-tools gen-entrypoint",
     "cds-watch": "cds watch --open",
-    "watch-capm1.storemanagement": "cds watch --open capm1.storemanagement/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-capm1.storemanagement": "cds watch --open capm1.storemanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-productcatalog": "cds watch --open capm1.productcatalog/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {
@@ -44,6 +47,11 @@
   },
   "lcap": true,
   "sapux": [
-    "app/capm1.storemanagement"
+    "app/capm1.storemanagement",
+    "app/project1",
+    "app/productcatalog"
+  ],
+  "workspaces": [
+    "app/*"
   ]
 }

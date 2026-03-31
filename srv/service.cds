@@ -16,12 +16,7 @@ service cAPM1Srv {
   @cds.redirection.target entity Products as projection on my.Products;
   entity PriceDetails as projection on my.PriceDetails;
   entity Festivals as projection on my.Festivals;
-  entity ProductCatalog as select from my.Products{
-    key ID,
-    productsID,
-    name as productName,
-    UOM,
-    store.name as storeName,
-    priceDetails.price as Price
-  };
+    @readonly
+    // @cds.redirection.target
+  entity ProductCatalog as projection on my.ProductCatalogView;
 }

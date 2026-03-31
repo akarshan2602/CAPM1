@@ -58,24 +58,43 @@ annotate cAPM1Srv.Products with @(
 );
 
 annotate cAPM1Srv.ProductCatalog with @(
-    UI.LineItem: [
-    {Value: productName, Label: 'Product Name'},
-    {Value: storeName, Label: 'Store'},
-    {Value: initialPrice, Label: 'Price'},
-    {Value: UOM, Label: 'Unit of Measure'}
-  ],
+    UI.HeaderInfo:{
+    TypeName: 'Product',
+    TypeNamePlural: 'Global Product Catalog',
+    Title: {Value: productName}
+  },
+     UI.Facets: [
+      {
+        $Type: 'UI.ReferenceFacet',
+        Label: 'Store & Pricing Information',
+        Target: '@UI.FieldGroup#CombinedDetails'
+      },
+    ],
+    UI.FieldGroup #CombinedDetails:{
+      Data:[
+        {Value:productName, Label: 'Product Name'},
+        {Value: Price, Label: 'Current Price'},
+        {Value: UOM, Label: 'Unit of Measure'},
+                // {Value: storeName, Label: 'Available at Store'},
+        {
+          $Type: 'UI.DataFieldWithIntentBasedNavigation',
+          Value: storeName,
+          Label: 'View Store Timing and Details',
+          SemanticObject: 'store',
+          Action: 'display'
+        }
+      ]
+    },
   UI.SelectionFields :[
     productName,
     storeName
   ],
-  UI.HeaderInfo:{
-    TypeName: 'Product',
-    TypeNamePlural: 'Global Product Catalog',
-    Title: {Value: productName}
-  }
-
+  UI.LineItem: [
+    {Value: productName, Label: 'Product'},
+    {Value: storeName, Label: 'Store'},
+    {Value: Price, Label: 'Price'}
+  ]
 );
-
 //---------------FESTIVALS UI----------------
 annotate cAPM1Srv.Festivals with @(
   UI.LineItem: [

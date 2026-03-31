@@ -56,10 +56,26 @@ entity PriceDetails : cuid  {
   UOM: String(10);
   product: Association to Products;
 }
-@cds.redirection.target entity ProductCatalog as select from Products{
+
+ entity ProductCatalogView as select from Products{
     key ID,
+    productsID,
   name as productName,
   UOM,
-  price.price as price,
-  store.name as storeName
+  // price.price as price,
+  priceDetails.price as Price,
+  store.name as storeName,
+  store: Association to Store on store.ID=$self.store.ID,
+  priceDetails
 }
+
+// entity ProductCatalogView as select Products {
+//    key ID,
+//   productsID,
+//   name as productName,
+//   UOM,
+//   priceDetails.price as Price,
+//   store.name as storeName,
+//   store: Association Store,
+//   priceDetails
+// }

@@ -8,9 +8,9 @@ sap.ui.define(['sap/fe/test/ObjectPage'], function(ObjectPage) {
 
     return new ObjectPage(
         {
-            appId: 'capm1.storemanagement',
-            componentId: 'StoreObjectPage',
-            contextPath: '/Store'
+            appId: 'productcatalog',
+            componentId: 'ProductCatalogObjectPage',
+            contextPath: '/ProductCatalog'
         },
         CustomPageDefinitions
     );

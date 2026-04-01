@@ -1,30 +1,32 @@
 {
   "generationParameters": {
-    "generationDate": "Fri Mar 20 2026 06:17:52 GMT+0000 (Coordinated Universal Time)",
+    "generationDate": "Wed Apr 01 2026 12:30:58 GMT+0000 (Coordinated Universal Time)",
     "generatorPlatform": "SAP Business Application Studio",
     "serviceType": "Local CAP",
     "metadataFilename": "",
     "serviceUrl": "http://localhost:4004/service/cAPM1/",
-    "appName": "capm1.storemanagement",
-    "appTitle": "Store Management",
-    "appDescription": "Store Management using CAPM",
+    "appName": "productcatalog",
+    "appTitle": "Global Product Catalog",
+    "appDescription": "An SAP Fiori application.",
     "appNamespace": "",
     "ui5Theme": "sap_horizon",
-    "ui5Version": "1.120.13",
+    "ui5Version": "1.146.0",
+    "enableEslint": true,
+    "enableTypeScript": false,
     "showMockDataInfo": false,
-    "generatorVersion": "1.21.0",
+    "generatorVersion": "1.22.0",
     "template": "List Report Page V4",
     "generatorName": "SAP Fiori Application Generator",
     "entityRelatedConfig": [
       {
         "type": "Main Entity",
-        "value": "Store"
+        "value": "ProductCatalog"
       },
       {
         "type": "Navigation Entity",
         "value": "None"
       }
     ],
-    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/capm1.storemanagement/webapp/index.html"
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/productcatalog/index.html"
   }
 }

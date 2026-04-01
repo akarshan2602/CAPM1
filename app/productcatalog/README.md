@@ -1,32 +1,32 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Fri Mar 20 2026 06:17:52 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Wed Apr 01 2026 12:30:58 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.21.0|
+|**App Generator Version**<br>1.22.0|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local CAP|
 |**Service URL**<br>http://localhost:4004/service/cAPM1/|
-|**Module Name**<br>capm1.storemanagement|
-|**Application Title**<br>Store Management|
+|**Module Name**<br>productcatalog|
+|**Application Title**<br>Global Product Catalog|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.120.13|
+|**UI5 Version**<br>1.146.0|
 |**Enable TypeScript**<br>False|
-|**Add Eslint configuration**<br>False|
-|**Main Entity**<br>Store|
+|**Add Eslint configuration**<br>True, see https://www.npmjs.com/package/@sap-ux/eslint-plugin-fiori-tools#rules for the eslint rules.|
+|**Main Entity**<br>ProductCatalog|
 |**Navigation Entity**<br>None|
 
-## capm1.storemanagement
+## productcatalog
 
-Store Management using CAPM
+An SAP Fiori application.
 
 ### Starting the generated app
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  To launch the generated app, start your CAP project:  and navigate to the following location in your browser:
 
-http://localhost:4004/capm1.storemanagement/webapp/index.html
+http://localhost:4004/productcatalog/index.html
 
 #### Pre-requisites:
 

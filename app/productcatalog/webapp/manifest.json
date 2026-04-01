@@ -1,19 +1,19 @@
 {
-  "_version": "1.60.0",
+  "_version": "1.83.0",
   "sap.app": {
-    "id": "capm1.storemanagement",
+    "id": "productcatalog",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "Store Management",
-    "description": "Store Management using CAPM",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.21.0",
-      "toolsId": "d46e7d2f-1b78-4943-8cb8-0dd812f821a5"
+      "version": "1.22.0",
+      "toolsId": "d4dfc94b-7227-44dc-af5e-d8c4973d9640"
     },
     "dataSources": {
       "mainService": {
@@ -21,16 +21,16 @@
         "type": "OData",
         "settings": {
           "annotations": [],
-          "odataVersion": "4.0"
+          "odataVersion": "4.01"
         }
       }
     },
     "crossNavigation": {
       "inbounds": {
-        "capm1storemanagement-display": {
-          "semanticObject": "capm1storemanagement",
+        "ProductCatalog-display": {
+          "semanticObject": "ProductCatalog",
           "action": "display",
-          "title": "{{capm1storemanagement-display.flpTitle}}",
+          "title": "{{ProductCatalog-display.flpTitle}}",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -58,7 +58,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.120.13",
+      "minUI5Version": "1.146.0",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -73,7 +73,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "capm1.storemanagement.i18n.i18n"
+          "bundleName": "productcatalog.i18n.i18n"
         }
       },
       "": {
@@ -98,33 +98,28 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "StoreList",
-          "target": "StoreList"
+          "name": "ProductCatalogList",
+          "target": "ProductCatalogList"
         },
         {
-          "pattern": "Store({key}):?query:",
-          "name": "StoreObjectPage",
-          "target": "StoreObjectPage"
-        },
-        {
-          "name": "Store_productsObjectPage",
-          "pattern": "Store({key})/products({productsKey}):?query:",
-          "target": "Store_productsObjectPage"
+          "pattern": "ProductCatalog({key}):?query:",
+          "name": "ProductCatalogObjectPage",
+          "target": "ProductCatalogObjectPage"
         }
       ],
       "targets": {
-        "StoreList": {
+        "ProductCatalogList": {
           "type": "Component",
-          "id": "StoreList",
+          "id": "ProductCatalogList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Store",
+              "contextPath": "/ProductCatalog",
               "variantManagement": "Page",
               "navigation": {
-                "Store": {
+                "ProductCatalog": {
                   "detail": {
-                    "route": "StoreObjectPage"
+                    "route": "ProductCatalogObjectPage"
                   }
                 }
               },
@@ -138,32 +133,14 @@
             }
           }
         },
-        "StoreObjectPage": {
+        "ProductCatalogObjectPage": {
           "type": "Component",
-          "id": "StoreObjectPage",
+          "id": "ProductCatalogObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Store",
-              "navigation": {
-                "products": {
-                  "detail": {
-                    "route": "Store_productsObjectPage"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Store_productsObjectPage": {
-          "type": "Component",
-          "id": "Store_productsObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "navigation": {},
-              "contextPath": "/Store/products"
+              "contextPath": "/ProductCatalog"
             }
           }
         }

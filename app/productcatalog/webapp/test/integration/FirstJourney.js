@@ -10,8 +10,10 @@ sap.ui.define([
         opaTest("Start application", function (Given, When, Then) {
             Given.iStartMyApp();
 
-            Then.onTheStoreList.iSeeThisPage();
-            Then.onTheStoreList.onTable().iCheckColumns(3, {"name":{"header":"name"},"city":{"header":"city"},"emailId":{"header":"emailId"}});
+            Then.onTheProductCatalogList.iSeeThisPage();
+            Then.onTheProductCatalogList.onFilterBar().iCheckFilterField("productName");
+            Then.onTheProductCatalogList.onFilterBar().iCheckFilterField("storeName");
+            Then.onTheProductCatalogList.onTable().iCheckColumns(3, {"productName":{"header":"Product"},"storeName":{"header":"Store"},"Price":{"header":"Price"}});
 
         });
 
@@ -19,12 +21,12 @@ sap.ui.define([
         opaTest("Navigate to ObjectPage", function (Given, When, Then) {
             // Note: this test will fail if the ListReport page doesn't show any data
             
-            When.onTheStoreList.onFilterBar().iExecuteSearch();
+            When.onTheProductCatalogList.onFilterBar().iExecuteSearch();
             
-            Then.onTheStoreList.onTable().iCheckRows();
+            Then.onTheProductCatalogList.onTable().iCheckRows();
 
-            When.onTheStoreList.onTable().iPressRow(0);
-            Then.onTheStoreObjectPage.iSeeThisPage();
+            When.onTheProductCatalogList.onTable().iPressRow(0);
+            Then.onTheProductCatalogObjectPage.iSeeThisPage();
 
         });
 

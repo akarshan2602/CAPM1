@@ -62,10 +62,9 @@ entity PriceDetails : cuid  {
     productsID,
   name as productName,
   UOM,
-  // price.price as price,
   priceDetails.price as Price,
   store.name as storeName,
-  store: Association to Store on store.ID=$self.store.ID,
+  store: Association to Store on store.ID = $self.store.ID,
   priceDetails
 }
 

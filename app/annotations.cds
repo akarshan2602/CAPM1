@@ -77,11 +77,10 @@ annotate cAPM1Srv.ProductCatalog with @(
         {Value: UOM, Label: 'Unit of Measure'},
                 // {Value: storeName, Label: 'Available at Store'},
         {
-          $Type: 'UI.DataFieldWithIntentBasedNavigation',
+          $Type: 'UI.DataFieldWithNavigationPath',
           Value: storeName,
           Label: 'View Store Timing and Details',
-          SemanticObject: 'store',
-          Action: 'display'
+          Target: 'store'
         }
       ]
     },

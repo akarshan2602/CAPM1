@@ -8,9 +8,9 @@ sap.ui.define(['sap/fe/test/ListReport'], function(ListReport) {
 
     return new ListReport(
         {
-            appId: 'capm1.storemanagement',
-            componentId: 'StoreList',
-            contextPath: '/Store'
+            appId: 'productcatalog',
+            componentId: 'ProductCatalogList',
+            contextPath: '/ProductCatalog'
         },
         CustomPageDefinitions
     );

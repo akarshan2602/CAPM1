@@ -18,5 +18,9 @@ service cAPM1Srv {
   entity Festivals as projection on my.Festivals;
     @readonly
     // @cds.redirection.target
-  entity ProductCatalog as projection on my.ProductCatalogView;
+  entity ProductCatalog as projection on my.ProductCatalogView{
+    *,
+    store: redirected to Store,
+    priceDetails: redirected to PriceDetails
+  };
 }

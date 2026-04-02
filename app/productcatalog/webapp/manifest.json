@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.22.0",
-      "toolsId": "d4dfc94b-7227-44dc-af5e-d8c4973d9640"
+      "toolsId": "79de0018-d4a3-473c-93da-14d50f447960"
     },
     "dataSources": {
       "mainService": {
@@ -22,19 +22,6 @@
         "settings": {
           "annotations": [],
           "odataVersion": "4.01"
-        }
-      }
-    },
-    "crossNavigation": {
-      "inbounds": {
-        "ProductCatalog-display": {
-          "semanticObject": "ProductCatalog",
-          "action": "display",
-          "title": "{{ProductCatalog-display.flpTitle}}",
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          }
         }
       }
     }
@@ -105,6 +92,11 @@
           "pattern": "ProductCatalog({key}):?query:",
           "name": "ProductCatalogObjectPage",
           "target": "ProductCatalogObjectPage"
+        },
+        {
+          "pattern": "ProductCatalog({key})/store({key2}):?query",
+          "name": "StoreObjectPage",
+          "target": "StoreObjectPage"
         }
       ],
       "targets": {
@@ -140,7 +132,18 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/ProductCatalog"
+              "contextPath": "/ProductCatalog",
+              "navigation": {}
+            }
+          }
+        },
+        "StoreObjectPage": {
+          "type": "Component",
+          "id": "StoreObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/ProductCatalog/store"
             }
           }
         }

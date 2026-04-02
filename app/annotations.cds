@@ -1,4 +1,6 @@
-using { cAPM1Srv } from '../srv/service.cds';
+// using cAPM1Srv as service from '../../srv/service';
+
+using { cAPM1Srv } from '../srv/service';
 
 //---STORE UI----
 
@@ -69,6 +71,10 @@ annotate cAPM1Srv.ProductCatalog with @(
         Label: 'Store & Pricing Information',
         Target: '@UI.FieldGroup#CombinedDetails'
       },
+      {$Type: 'UI.ReferenceFacet', Label: 'Price Details', Target: 'priceDetails/@UI.LineItem'},
+          {
+      $Type: 'UI.ReferenceFacet', Label: 'Opening Hours', Target: 'openingHours/@UI.LineItem'
+    }
     ],
     UI.FieldGroup #CombinedDetails:{
       Data:[

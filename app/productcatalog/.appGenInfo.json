@@ -1,12 +1,12 @@
 {
   "generationParameters": {
-    "generationDate": "Wed Apr 01 2026 12:30:58 GMT+0000 (Coordinated Universal Time)",
+    "generationDate": "Wed Apr 01 2026 13:14:27 GMT+0000 (Coordinated Universal Time)",
     "generatorPlatform": "SAP Business Application Studio",
     "serviceType": "Local CAP",
     "metadataFilename": "",
     "serviceUrl": "http://localhost:4004/service/cAPM1/",
     "appName": "productcatalog",
-    "appTitle": "Global Product Catalog",
+    "appTitle": "Store Catalog",
     "appDescription": "An SAP Fiori application.",
     "appNamespace": "",
     "ui5Theme": "sap_horizon",

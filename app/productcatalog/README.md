@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Wed Apr 01 2026 12:30:58 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Wed Apr 01 2026 13:14:27 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.22.0|
 |**Generation Platform**<br>SAP Business Application Studio|
@@ -9,7 +9,7 @@
 |**Service Type**<br>Local CAP|
 |**Service URL**<br>http://localhost:4004/service/cAPM1/|
 |**Module Name**<br>productcatalog|
-|**Application Title**<br>Global Product Catalog|
+|**Application Title**<br>Store Catalog|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.146.0|

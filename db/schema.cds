@@ -58,25 +58,36 @@ entity PriceDetails : cuid  {
   product: Association to Products;
 }
 
- entity ProductCatalogView as select from Products{
-    key ID,
-    productsID,
-  name as productName,
-  UOM,
-  priceDetails.price as Price,
-  store.name as storeName,
-  store.ID as store_ID,
-  store: Association to Store on store.ID = $self.store_ID,
-  priceDetails: Association to many PriceDetails on priceDetails.product.ID = $self.ID
-}
-
-// entity ProductCatalogView as select Products {
-//    key ID,
-//   productsID,
+//  entity ProductCatalogView as select from Products{
+//     key ID,
+//     productsID,
 //   name as productName,
 //   UOM,
 //   priceDetails.price as Price,
 //   store.name as storeName,
-//   store: Association Store,
-//   priceDetails
+//   store.ID as store_ID,
+//   store: Association to Store on store.ID = $self.store_ID,
+//   priceDetails: Association to many PriceDetails on priceDetails.product.ID = $self.ID
 // }
+entity ProductCatalogView as select from Products {
+
+    key ID,
+    productsID,
+    name as productName,
+    UOM,
+
+    // ✅ EXPOSE the navigation property (inherited)
+    store,
+
+    // ✅ Use association fields
+    store.name as storeName,
+
+    // ✅ price details
+    priceDetails: Association to many PriceDetails 
+        on priceDetails.product.ID = $self.ID,
+
+    priceDetails.price as Price
+};
+
+
+// ✅ SCHEMA IS CORRECT NO ISSUES IN THIS

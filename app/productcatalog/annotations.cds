@@ -24,6 +24,9 @@ annotate cAPM1Srv.Store with @(
     Data: [{Value : name}, {Value: city}, {Value: state}, {Value: country}, {Value: phone}, {Value: emailId}]
   }
 ) ;
+annotate cAPM1Srv.Store with @(
+  Consumption.semanticObject: 'Store'
+);
 //Opening Hours
 
 annotate cAPM1Srv.OpeningHours with @(
@@ -60,55 +63,81 @@ annotate cAPM1Srv.Products with @(
 );
 
 annotate cAPM1Srv.ProductCatalog with @(
-    UI.HeaderInfo:{
-    TypeName: 'Product',
-    TypeNamePlural: 'Global Product Catalog',
-    Title: {Value: productName}
+  // ==========================
+  // Header Information
+  // ==========================
+  UI.HeaderInfo: {
+    TypeName       : 'Product',
+    TypeNamePlural : 'Global Product Catalog',
+    Title          : { Value: productName }
   },
-     UI.Facets: [
-      {
-        $Type: 'UI.ReferenceFacet',
-        Label: 'Store & Pricing Information',
-        Target: '@UI.FieldGroup#CombinedDetails'
-      },
-      {$Type: 'UI.ReferenceFacet', Label: 'Price Details', Target: 'priceDetails/@UI.LineItem'},
-    //       {
-    //   $Type: 'UI.ReferenceFacet', Label: 'Opening Hours', Target: 'openingHours/@UI.LineItem'
-    // }
-    ],
-    UI.FieldGroup #CombinedDetails:{
-      Data:[
-        {Value:productName, Label: 'Product Name'},
-        {Value: Price, Label: 'Current Price'},
-        {Value: UOM, Label: 'Unit of Measure'},
-                // {Value: storeName, Label: 'Available at Store'},
-        {
-          $Type: 'UI.DataFieldWithNavigationPath',
-          Value: store_ID,
-          Label: 'View Store Timing and Details',
-          Target: 'store'
-        }
-      ]
+
+  // ==========================
+  // Facets (Sections)
+  // ==========================
+  UI.Facets: [
+    {
+      $Type  : 'UI.ReferenceFacet',
+      Label  : 'Store & Pricing Information',
+      Target : '@UI.FieldGroup#CombinedDetails'
     },
-  UI.SelectionFields :[
+    {
+      $Type  : 'UI.ReferenceFacet',
+      Label  : 'Store Details',
+      Target : '@UI.Identification'
+    }
+  ],
+
+  // ==========================
+  // ✅ CLICKABLE STORE LINK
+  // ✅ REAL REDIRECT TO /Store(<ID>)
+  // ==========================
+  UI.Identification: [
+    {
+      $Type          : 'UI.DataFieldWithIntentBasedNavigation',
+      Value          : storeName,
+      Label          : 'View Store Timing & Details',
+      SemanticObject : 'Store',
+      Action         : 'display'
+    }
+  ],
+
+  // ==========================
+  // Main FieldGroup (display ONLY)
+  // ==========================
+  UI.FieldGroup#CombinedDetails: {
+    Data: [
+      { Value: productName, Label: 'Product Name' },
+      { Value: Price,       Label: 'Current Price' },
+      { Value: UOM,         Label: 'Unit of Measure' },
+      { Value: storeName,   Label: 'Store' }
+    ]
+  },
+
+  // ==========================
+  // List Report Table
+  // ✅ Store column now redirects to Store
+  // ==========================
+  UI.LineItem: [
+    { Value: productName, Label: 'Product' },
+
+    {
+      $Type          : 'UI.DataFieldWithIntentBasedNavigation',
+      Value          : storeName,
+      Label          : 'Store',
+      SemanticObject : 'Store',
+      Action         : 'display'
+    },
+
+    { Value: Price, Label: 'Price' }
+  ],
+
+  // ==========================
+  // Filters
+  // ==========================
+  UI.SelectionFields: [
     productName,
     storeName
-  ],
-  UI.LineItem: [
-    {Value: productName, Label: 'Product'},
-    {Value: storeName, Label: 'Store'},
-    {Value: Price, Label: 'Price'},
-    {Value: store_ID, Label: 'STORE ID DEBUG'}
-  ]
-);
-//---------------FESTIVALS UI----------------
-annotate cAPM1Srv.Festivals with @(
-  UI.LineItem: [
-    { Value: name },
-    { Value: date },
-    { Value: isClosed },
-    { Value: openingTime },
-    { Value: closingTime }
   ]
 );
 // ----current UI------

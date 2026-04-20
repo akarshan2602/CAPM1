@@ -8,6 +8,7 @@ service cAPM1Srv {
   // Requirement Main Entity to Procus with Store name and price
   annotate cAPM1Srv.Store with @(
     Common.SemanticObject: 'Store'
+
   );
   
   entity OpeningHours as projection on my.OpeningHours{
@@ -21,6 +22,7 @@ service cAPM1Srv {
   entity Festivals as projection on my.Festivals;
     @readonly
     // @cds.redirection.target
+    // @odata.draft.enabled
   entity ProductCatalog as projection on my.ProductCatalogView{
     *,
     store: redirected to Store,
